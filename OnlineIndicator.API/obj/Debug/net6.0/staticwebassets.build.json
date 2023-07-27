@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZUj5arNuBBKqCsKrauY/KciZr5MeJt2gygdhEnn0MH8=",
+  "Source": "OnlineIndicator.API",
+  "BasePath": "_content/OnlineIndicator.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
