@@ -1,0 +1,20 @@
+﻿@using OnlineIndicatorDashboard.Models;
+@model List<User>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Last Online Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.LastHeartbeatTime</td>
+            </tr>
+        }
+    </tbody>
+</table>

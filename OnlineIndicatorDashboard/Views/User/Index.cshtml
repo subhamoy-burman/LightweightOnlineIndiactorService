@@ -2,21 +2,35 @@
 
 <h2>Users</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>User Name</th>
-            <th>Last Heartbeat Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.UserName</td>
-                <td>@user.LastHeartbeatTime</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div id="user-list-container">
+    @Html.Partial("_UserList")
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //$(document).ready(function () {
+    //    setInterval(function () {
+    //        $.get('/user/getusers', function (data) {
+    //            var userList = '';
+    //            $.each(data, function (index, user) {
+    //                userList += '<tr><td>' + user.userName + '</td><td>' + user.lastHeartbeatTime + '</td></tr>';
+    //            });
+    //            $('#user-list-container table tbody').html(userList);
+    //        });
+    //    }, 5000);
+    //});
+    window.onload = function () {
+        var source = new EventSource('/stream-updates');
+
+        source.onmessage = function (event) {
+            var data = JSON.parse(event.data);
+            var userList = '';
+
+            $.each(data, function (index, user) {
+                userList += '<tr><td>' + user.userName + '</td><td>' + user.lastHeartbeatTime + '</td></tr>';
+            });
+
+            $('#user-list-container table tbody').html(userList);
+        };
+    };
+</script>

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineIndicator.API.Helper;
 using OnlineIndicator.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddSingleton<IEventIdProvider, EventIdProvider>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IEventIdProvider, EventIdProvider>();
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 
@@ -41,6 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.MapFallback(context => context.Response.WriteAsync("Welcome to my API!"));
 

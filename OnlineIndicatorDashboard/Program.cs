@@ -2,14 +2,12 @@ using OnlineIndicatorDashboard.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
-
+using Microsoft.AspNetCore.ResponseCaching;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add controllers.
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
 
